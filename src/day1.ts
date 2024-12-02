@@ -40,3 +40,7 @@ export async function run() {
   const result2 = await part2(a, b);
   console.log(`Day ${day} - Part 2:`, result2);
 }
+
+if (import.meta.main) {
+  run();
+} 
