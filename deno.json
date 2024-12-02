@@ -1,0 +1,16 @@
+{
+  "tasks": {
+    "day": "deno run --allow-read --watch day.ts",
+    "create": "deno run --allow-env --allow-net=adventofcode.com --allow-write --allow-read --allow-run scripts/createDay.ts",
+    "download": "deno run --allow-env --allow-net=adventofcode.com --allow-write=inputs scripts/downloadInput.ts"
+  },
+  "fmt": {
+    "options": {
+      "useTabs": false,
+      "lineWidth": 80,
+      "indentWidth": 2,
+      "singleQuote": true,
+      "proseWrap": "preserve"
+    }
+  }
+}
