@@ -65,7 +65,9 @@ if (!session) {
     });
 
     if (!response.ok) {
-      console.error(`Failed to fetch input for day ${day}: ${response.statusText}`);
+      console.error(
+        `Failed to fetch input for day ${day}: ${response.statusText}`,
+      );
     } else {
       const input = await response.text();
       await Deno.writeTextFile(`inputs/${day}.txt`, input.trimEnd());

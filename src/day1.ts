@@ -27,9 +27,9 @@ async function part2(a: number[], b: number[]): Promise<number | string> {
 export async function run() {
   const input = await readInput(day);
 
-  const rows = input.split("\n");
-  const a = rows.map((row) => parseInt(row.split("   ")[0]));
-  const b = rows.map((row) => parseInt(row.split("   ")[1]));
+  const rows = input.split('\n');
+  const a = rows.map((row) => parseInt(row.split('   ')[0]));
+  const b = rows.map((row) => parseInt(row.split('   ')[1]));
 
   a.sort();
   b.sort();
@@ -43,4 +43,4 @@ export async function run() {
 
 if (import.meta.main) {
   run();
-} 
+}

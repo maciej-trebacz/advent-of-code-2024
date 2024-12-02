@@ -30,7 +30,9 @@ try {
   });
 
   if (!response.ok) {
-    console.error(`Failed to fetch input for day ${day}: ${response.statusText}`);
+    console.error(
+      `Failed to fetch input for day ${day}: ${response.statusText}`,
+    );
     Deno.exit(1);
   }
 
