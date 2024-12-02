@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "request": "launch",
+      "name": "Debug solution",
+      "type": "node",
+      "program": "${file}",
+      "runtimeExecutable": "deno",
+      "cwd": "${workspaceFolder}",
+      "env": {},
+      "runtimeArgs": [
+        "run",
+        "--unstable",
+        "--inspect-wait",
+        "--allow-all"
+      ],
+      "attachSimplePort": 9229
+    }
+  ]
+}
