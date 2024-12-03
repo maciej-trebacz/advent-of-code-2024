@@ -54,7 +54,7 @@ if (!session) {
   console.error('AOC_SESSION environment variable is not set.');
   console.error('Skipping input download.');
 } else {
-  const url = `https://adventofcode.com/2023/day/${day}/input`;
+  const url = `https://adventofcode.com/2024/day/${day}/input`;
 
   try {
     const response = await fetch(url, {
