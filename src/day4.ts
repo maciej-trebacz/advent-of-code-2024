@@ -61,8 +61,17 @@ async function part1(input: string[]): Promise<number | string> {
 }
 
 async function part2(input: string[]): Promise<number | string> {
-  // TODO: Implement Part 2 solution here
-  return 'Result of Part 2';
+  const regex = /(M[A-Z]M.{138}[A-Z]A[A-Z].{138}S[A-Z]S)|(M[A-Z]S.{138}[A-Z]A[A-Z].{138}M[A-Z]S)|(S[A-Z]M.{138}[A-Z]A[A-Z].{138}S[A-Z]M)|(S[A-Z]S.{138}[A-Z]A[A-Z].{138}M[A-Z]M)/g;
+
+  const matches = [];
+  let match;
+
+  while ((match = regex.exec(input.join(' '))) !== null) {
+    matches.push(match[0]);
+    regex.lastIndex = match.index + 1; // Move the index forward by one for overlap
+  }
+
+  return matches.length;
 }
 
 export async function run() {
@@ -72,8 +81,8 @@ export async function run() {
   console.log(`Day ${day} - Part 1:`, result1);
 
   // Uncomment the following lines after completing Part 1
-  // const result2 = await part2(input.split('\n'));
-  // console.log(`Day ${day} - Part 2:`, result2);
+  const result2 = await part2(input.split('\n'));
+  console.log(`Day ${day} - Part 2:`, result2);
 }
 
 if (import.meta.main) {
