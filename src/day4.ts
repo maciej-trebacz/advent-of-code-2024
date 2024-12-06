@@ -1,4 +1,5 @@
 import { readInput } from '../utils/readInput.ts';
+import { overlappingRegex } from '../utils/regex.ts';
 
 const day = 4;
 
@@ -10,7 +11,7 @@ function xmasCount(input: string): number {
   // Iterate over the string and manually adjust the start index for overlapping matches
   while ((match = regex.exec(input)) !== null) {
     matches.push(match[0]);
-    regex.lastIndex = match.index + 1; // Move the index forward by one for overlap
+   regex.lastIndex = match.index + 1; // Move the index forward by one for overlap
   }
 
   return matches.length;
@@ -60,18 +61,19 @@ async function part1(input: string[]): Promise<number | string> {
   return result;
 }
 
+async function part1Regex(input: string[]): Promise<number | string> {
+  const horizontal = /XMAS|SAMX/gi;
+  const vertical = /(X.{140}M.{140}A.{140}S|S.{140}A.{140}M.{140}X)/gi;
+  const diagonal1 = /(X.{141}M.{141}A.{141}S|S.{141}A.{141}M.{141}X)/gi;
+  const diagonal2 = /(X.{139}M.{139}A.{139}S|S.{139}A.{139}M.{139}X)/gi;
+
+  return overlappingRegex(horizontal, input.join(' ')) + overlappingRegex(vertical, input.join(' ')) + overlappingRegex(diagonal1, input.join(' ')) + overlappingRegex(diagonal2, input.join(' '))
+}
+
 async function part2(input: string[]): Promise<number | string> {
   const regex = /(M[A-Z]M.{138}[A-Z]A[A-Z].{138}S[A-Z]S)|(M[A-Z]S.{138}[A-Z]A[A-Z].{138}M[A-Z]S)|(S[A-Z]M.{138}[A-Z]A[A-Z].{138}S[A-Z]M)|(S[A-Z]S.{138}[A-Z]A[A-Z].{138}M[A-Z]M)/g;
 
-  const matches = [];
-  let match;
-
-  while ((match = regex.exec(input.join(' '))) !== null) {
-    matches.push(match[0]);
-    regex.lastIndex = match.index + 1; // Move the index forward by one for overlap
-  }
-
-  return matches.length;
+  return overlappingRegex(regex, input.join(' '))
 }
 
 export async function run() {
@@ -80,7 +82,9 @@ export async function run() {
   const result1 = await part1(input.split('\n'));
   console.log(`Day ${day} - Part 1:`, result1);
 
-  // Uncomment the following lines after completing Part 1
+  const result1regex = await part1Regex(input.split('\n'));
+  console.log(`Day ${day} - Part 1 regex:`, result1regex);
+
   const result2 = await part2(input.split('\n'));
   console.log(`Day ${day} - Part 2:`, result2);
 }
